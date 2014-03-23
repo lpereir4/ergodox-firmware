@@ -19,6 +19,7 @@
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 
+
 const uint8_t PROGMEM _kb_layout[KB_LAYERS][KB_ROWS][KB_COLUMNS] = {
 
 	KB_MATRIX_LAYER(  // layout: layer 0: default
@@ -34,11 +35,11 @@ _backslash,     _quote,     _comma, _period,      _P, _Y,    1,
                                               0,      0, _home,
                                             _bs,   _del,  _end,
 // right hand
-        3, _6,      _7,      _8,      _9,      _0,     _dash,
-_bracketL, _F,      _G,      _C,      _R,      _L, _bracketR,
-           _D,      _H,      _T,      _N,      _S,    _slash,
-        1, _B,      _M,      _W,      _V,      _Z,   _shiftR,
-               _arrowL, _arrowD, _arrowU, _arrowR,     _guiR,
+        3, _6, _7, _8, _9, _0,  0,
+_bracketL, _F, _G, _C, _R, _L,  0,
+           _D, _H, _T, _N, _S,  0,
+        1, _B, _M, _W,  0,  0,  0,
+                0,  0,  0,  0,  0,
  _altR, _ctrlR,
 _pageU,      0,      0,
 _pageD, _enter, _space ),
@@ -158,6 +159,18 @@ _F12,       _F6,    _F7,       _F8,       _F9,         _F10,   _power,
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 
+/* à */ void agrave(void) {int seq[4] = {_0, _0, _E, _0}; kbfun_send_unicode(seq, 4);}
+/* ! */ void excl_mark(void) {int seq[4] = {_0, _0, _2, _1}; kbfun_send_unicode(seq, 4);}
+/* " */ void quot_mark(void) {int seq[4] = {_0, _0, _2, _2}; kbfun_send_unicode(seq, 4);}
+/* # */ void sharp(void) {int seq[4] = {_0, _0, _2, _3}; kbfun_send_unicode(seq, 4);}
+/* $ */ void dollar(void) {int seq[4] = {_0, _0, _2, _4}; kbfun_send_unicode(seq, 4);}
+/* % */ void percent(void) {int seq[4] = {_0, _0, _2, _5}; kbfun_send_unicode(seq, 4);}
+/* & */ void amp(void) {int seq[4] = {_0, _0, _2, _6}; kbfun_send_unicode(seq, 4);}
+/* ' */ void apostrophe(void) {int seq[4] = {_0, _0, _2, _7}; kbfun_send_unicode(seq, 4);}
+/* ( */ void lparen(void) {int seq[4] = {_0, _0, _2, _8}; kbfun_send_unicode(seq, 4);}
+/* ) */ void rparen(void) {int seq[4] = {_0, _0, _2, _9}; kbfun_send_unicode(seq, 4);}
+/* * */ void mult(void) {int seq[4] = {_0, _0, _2, _A}; kbfun_send_unicode(seq, 4);}
+
 const void_funptr_t PROGMEM _kb_layout_press[KB_LAYERS][KB_ROWS][KB_COLUMNS] = {
 
 	KB_MATRIX_LAYER(  // press: layer 0: default
@@ -173,11 +186,11 @@ NULL,
                                            NULL,   NULL, kprrel,
                                          kprrel, kprrel, kprrel,
 // right hand
-        slpunum, kprrel, kprrel, kprrel, kprrel, kprrel, kprrel,
-         kprrel, kprrel, kprrel, kprrel, kprrel, kprrel, kprrel,
-                 kprrel, kprrel, kprrel, kprrel, kprrel, kprrel,
-         lpush1, kprrel, kprrel, kprrel, kprrel, kprrel, s2kcap,
-                         kprrel, kprrel, kprrel, kprrel, kprrel,
+        slpunum, kprrel,  kprrel,      kprrel, kprrel,   kprrel,    &agrave,
+         kprrel, kprrel,  kprrel,      kprrel, kprrel,   kprrel, &excl_mark,
+                 kprrel,  kprrel,      kprrel, kprrel,   kprrel, &quot_mark,
+         lpush1, kprrel,  kprrel,      kprrel,  &mult,  &rparen,     &sharp,
+                         &lparen, &apostrophe,   &amp, &percent,    &dollar,
  kprrel, kprrel,
  kprrel,   NULL,   NULL,
  kprrel, kprrel, kprrel ),
