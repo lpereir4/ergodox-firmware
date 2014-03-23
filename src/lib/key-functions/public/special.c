@@ -11,6 +11,7 @@
 #include <stdint.h>
 #include "../../../lib-other/pjrc/usb_keyboard/usb_keyboard.h"
 #include "../../../lib/usb/usage-page/keyboard.h"
+#include "../../../lib/usb/usage-page/keyboard--short-names.h"
 #include "../../../keyboard/layout.h"
 #include "../../../main.h"
 #include "../public.h"
@@ -106,6 +107,24 @@ static inline void numpad_toggle_numlock(void) {
 	usb_keyboard_send();
 	_kbfun_press_release(false, KEY_LockingNumLock);
 	usb_keyboard_send();
+}
+
+void kbfun_send_unicode(int seq[], int length) {
+  int i=0;
+  
+  _kbfun_press_release(true, _altL);
+	usb_keyboard_send();
+  
+  for(;i<length;++i) {
+    _kbfun_press_release(true, seq[i]);
+		usb_keyboard_send();
+    
+    _kbfun_press_release(false, seq[i]);
+    usb_keyboard_send();
+  }
+  
+  _kbfun_press_release(false, _altL);
+  usb_keyboard_send();
 }
 
 /*

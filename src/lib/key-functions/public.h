@@ -72,6 +72,8 @@
 	void kbfun_layer_push_numpad             (void);
 	void kbfun_layer_pop_numpad              (void);
 	void kbfun_mediakey_press_release        (void);
+  
+	void kbfun_send_unicode(int seq[], int length);
 
 #endif
 
